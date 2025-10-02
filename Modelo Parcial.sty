@@ -1,0 +1,71 @@
+(a) [2 ptos] Implementar el método eliminarPrimero en la clase ListaEnlazada que borra el primer
+elemento de la lista. Agregar el código faltante (anotado con ___ ) en la siguiente implementación:
+public void eliminarPrimero () {
+if (!this.isEmpty ) {
+this.comienzo.setNext (this.comienzo.getNext().getNext());
+}
+this.cantidad--;
+}
+
+
+(b) [3 ptos] Implementar el método buscar en la clase ListaEnlazada que retorna el i-esimo elemento,
+empezando desde 0 . Agregar el código faltante en la siguiente implementación:
+public T buscar ( int i ){
+if (this.isEmpty())
+throw new ListaException (" Lista ␣ Vacia ");
+
+if ( i < 0 || i >= this.cantidad)
+throw new ListaException (" Indice ␣ fuera ␣ de ␣ Rango ");
+
+Nodo <T> aux = this.comienzo.getNext() ;
+int k = 0;
+while (!aux.getNex() != null) {
+ if( k == i ) {
+    return aux.info(); // completar
+}
+k++;
+aux = aux.getNext(); // avanza aux
+}
+}
+
+
+Programación Funcional
+Pregunta (c) [3 puntos]
+Dadas las siguientes expresiones en Haskell, determine el tipo resultante:
+1. ((:) 1 . tail ) [0 ,2 ,3] 
+--tipo del resultante es una lista de int
+2. ( odd . pred . succ ) 10
+--devuelve un Bool, el cual es false
+3. ( fst . head ) [(1 , ’a ’) , (2 , ’b ’) ]
+--devuelve un int, que es el 1 
+
+Pregunta (d) [2 puntos]
+Se quiere hacer una función recursiva sinDups que elimine repetidos consecutivos de una lista. Por ejemplo:
+
+> sinDups [1 ,2 ,2 ,3 ,10 ,10 ,5]
+[1 ,2 ,3 ,10 ,5]
+Completar el siguiente código (reemplazar undefined por el código correspondiente):
+sinDups :: Eq a => [a] -> [a]
+sinDups [] = []
+sinDups [x] = [x]
+sinDups (x:(y:ys)) = if x==y then sinDups (y:ys) else x: sinDups(y:ys)
+
+
+Pregunta BONUS (e) [2 puntos](sólo se suma si la nota de los ejercicios anteriores es
+>= 5 y <10) (satura en 10)
+¿Qué política de pasaje de parámetros utiliza Java? Explicar con ejemplos.
+
+java utiliza pasaje de parametros por valor (pass by value)
+cuando se pasa un parametro a un metodo, java copia el valor de la variable que le pasas
+
+ejemplo
+public static void sumarUno(int x){
+    x = x+1;
+}
+
+int n = 5;
+sumarUno(n); 
+
+
+
+
