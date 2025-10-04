@@ -68,4 +68,7 @@ en la cola el primer el elemento en entrar es el primero en salir como una cola
 de supermercado, esta TAD soporta operaciones como:
 enqueue(Encolar) agregar un elemento en el final
 dequeue(Desencolar) saca el elemento al inicio 
+esVacia() devuelve un bool true si la cola esta vacia false lo contrario
+vaciar() elimina los elementos de la cola 
+longitud() devuelve la cantidad de elementos de la cola 
 
