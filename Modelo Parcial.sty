@@ -19,13 +19,14 @@ throw new ListaException (" Indice ␣ fuera ␣ de ␣ Rango ");
 
 Nodo <T> aux = this.comienzo.getNext() ;
 int k = 0;
-while (!aux.getNex() != null) {
+while (!aux.getNext() != null) {
  if( k == i ) {
     return aux.info(); // completar
 }
 k++;
 aux = aux.getNext(); // avanza aux
 }
+return null;
 }
 
 

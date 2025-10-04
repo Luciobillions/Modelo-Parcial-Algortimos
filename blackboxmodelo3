@@ -1,0 +1,67 @@
+public class ListaEnlazada<T> implements Lista<T> {
+    private Nodo<T> inicio;
+    private int tamano;
+    
+    public boolean esVacia() { return this.tamano == 0; }
+    
+    public void insertarAlInicio(T elemento) {
+        Nodo<T> nuevo = new Nodo<>(elemento);
+        nuevo.setSiguiente(this.inicio);  // Conectar al inicio actual
+        this.inicio = nuevo;       // Actualizar inicio
+        this.tamano++;
+    }
+    
+    public T obtener(int indice) throws TADException {
+        if (indice < 0 || indice >= this.tamano) throw new TADException("Índice inválido");
+        Nodo<T> aux = this.inicio;
+        for (int i = 0; i < indice; i++) {
+            aux = aux.getSiguiente();  // Avanzar al siguiente nodo
+        }
+        return this.aux.getInfo();  // Retornar info del nodo
+    }
+}
+
+
+public class ColaEstatica<T> implements Cola<T> {
+    private T[] elementos;
+    private int frente, fin, tamano;
+    private static final int CAPACIDAD = 10;
+    
+    @SuppressWarnings("unchecked")
+    public ColaEstatica() {
+        this.elementos = (T[]) new Object[CAPACIDAD];
+        this.frente = 0;
+        this.fin = -1;
+        this.tamano = 0;
+    }
+    
+    public boolean esVacia() { return this.tamano == 0; }
+    
+    public void encolar(T elemento) throws TADException {
+        if (this.tamano == CAPACIDAD) throw new TADException("Cola llena");
+        this.fin = (this.fin + 1) % CAPACIDAD;
+        this.elementos[this.fin] = elemento;
+        this.tamano++;
+    }
+    
+    public T desencolar() throws TADException {
+        if (this.esVacia()) throw new TADException("Cola vacía");
+        T resultado = this.elementos[this.frente];  // Obtener elemento en frente
+        this.elementos[this.frente] = null;  // Limpieza opcional
+        this.frente = (this.frente + 1 ) % CAPACIDAD ;  // Avanzar frente con wrap-around
+        this.tamano--;
+        return resultado;
+    }
+}
+
+
+(zipWith (+) [1,2] . map (*3)) [4,5]
+13 17
+devuelve una lista de Int
+
+takeWhile (<10) . iterate succ $ 0
+[0,1,2,3,4,5,6,7,8,9]
+
+
+uncurry max ('a', 5)
+

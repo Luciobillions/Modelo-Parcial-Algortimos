@@ -1,0 +1,64 @@
+public class PilaEnlazada<T> {
+    private Nodo<T> cima;
+    private int tamano;
+
+    public boolean esVacia() { return tamano == 0; }
+
+    public void apilar(T elemento) {
+        Nodo<T> nuevo = new Nodo<>(elemento);
+        nuevo.setSiguiente(this.cima);  // Completar
+        this.cima = nuevo;        // Completar
+        tamano++;
+    }
+
+    public T desapilar() throws TADException {
+        if (esVacia()) throw new TADException("Pila vacía");
+        T dato = this.cima.getInfo();           // Completar
+        this.cima = this.cima.getSiguiente();        // Completar
+        tamano--;
+        return dato;
+    }
+}
+
+
+public class ListaEstatica<T> {
+    private T[] elementos;
+    private int tamano;
+    private static final int CAPACIDAD = 20;
+
+    @SuppressWarnings("unchecked")
+    public ListaEstatica() {
+        elementos = (T[]) new Object[CAPACIDAD];
+        tamano = 0;
+    }
+
+    public void insertar(int indice, T elemento) throws TADException {
+        if (indice < 0 || indice > tamano || tamano == CAPACIDAD)
+            throw new TADException("Índice inválido o lista llena");
+        for (int i = tamano; i > indice; i--) {
+            elementos[i] = elemento[i-1];  // Completar
+        }
+        elementos[indice] = elemento;
+        tamano++;
+    }
+
+    public T obtener(int indice) throws TADException {
+        if (indice < 0 || indice >= tamano)
+            throw new TADException("Índice inválido");
+        return elementos[indice];  // Completar
+    }
+}
+
+map (+1) [1,2,3]
+
+[2,3,4]
+devuele una lista de Int
+
+foldl (*) 1 [2,3,4]
+
+1:2:3:4:[] --neutro de la multiplicacion 1 
+(((1 * 2) * 3)* 4) * 1 
+
+devuelve un int 
+
+
