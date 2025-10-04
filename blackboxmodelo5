@@ -1,0 +1,60 @@
+public class ListaEnlazada<T> implements Lista<T> {
+    private Nodo<T> inicio;
+    private Nodo<T> fin;  // Para agregar al final eficientemente
+    private int tamano;
+    
+    public boolean esVacia() { return this.tamano == 0; }
+    
+    public void agregarAlFinal(T elemento) {
+        Nodo<T> nuevo = new Nodo<>(elemento);
+        if (this.esVacia()) {
+            this.inicio = nuevo;
+            this.fin = nuevo;
+        } else {
+           this.fin.setSiguiente(nuevo);  // Conectar nuevo al final actual
+            this.fin = nuevo;  // Actualizar fin
+        }
+        this.tamano++;
+    }
+    
+    public T obtener(int indice) throws TADException {
+        if (indice < 0 || indice >= this.tamano) throw new TADException("Índice inválido");
+        Nodo<T> aux = this.inicio;
+        for (int i = 0; i < indice; i++) {
+            aux = aux.getSiguiente();  // Avanzar al siguiente
+        }
+        return aux.getInfo();  // Retornar info del nodo
+    }
+}
+
+
+public class PilaEstatica<T> implements Pila<T> {
+    private T[] elementos;
+    private int cima;  // Índice de la cima
+    private static final int CAPACIDAD = 10;
+    
+    @SuppressWarnings("unchecked")
+    public PilaEstatica() {
+        this.elementos = (T[]) new Object[CAPACIDAD];
+        this.cima = -1;
+    }
+    
+    public boolean esVacia() { return this.cima == -1; }
+    
+    public void apilar(T elemento) throws TADException {
+        if (this.cima == CAPACIDAD - 1) throw new TADException("Pila llena");
+        this.cima++;
+        this.elementos[this.cima] = elemento;  // Asignar en la cima
+    }
+    
+    public T desapilar() throws TADException {
+        if (this.esVacia()) throw new TADException("Pila vacía");
+        T resultado = elementos[this.cima];  // Obtener elemento en cima
+        this.elementos[this.cima] = null;  // Limpieza opcional
+        this.cima--;
+        return resultado;
+    }
+    
+    public int tamano() { return this.cima + 1; }
+}
+
