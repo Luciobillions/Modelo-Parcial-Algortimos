@@ -42,3 +42,30 @@ sumaLista xs = sumaAux xs 0
     sumaAux (x:xs) acc = sumaAux xs (acc + x) 
 
 
+herencia en poo
+Para la herencia hay que tener en cuenta la clase padre y la clase hija
+la clase hija va a heredar los metodos y atributos de esta clase padre, donde hay 
+que tener dos palabras clases, el extends, y super que se usa dentro de la subclase
+para referirse a la clase padre
+
+en ves en interfaces establecemos un contrato con metodos que si utilizamos promete 
+que cumplira lo que especifica el comentario, estos metodos no estan implementados
+para utilizarlos la palabra clave es implements
+
+pila vs cola
+el funcionamiento de estas dos TADS son muy diferentes
+en la pila se lleva una coleccion linea de elementos el cual es el llamado tope
+la pila tiene un sistema en cual el primero en entrar es el ultimo en salir 
+podemos verlo como una pila de libros apilada, la pila tiene definida operaciones
+push(apilar) agrega un nuevo elemento al tope 
+pop(desapilar) desapila el ultimo elemento del tope 
+Top(tope) nos informa de cual es el elemento del tope 
+
+
+en la cola en la cual se lleva una coleccion de elementos lineal
+un extremo es llamado inicio y el otro final
+en la cola el primer el elemento en entrar es el primero en salir como una cola 
+de supermercado, esta TAD soporta operaciones como:
+enqueue(Encolar) agregar un elemento en el final
+dequeue(Desencolar) saca el elemento al inicio 
+
