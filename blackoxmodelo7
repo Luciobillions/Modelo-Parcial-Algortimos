@@ -1,0 +1,75 @@
+public class PilaEnlazada<T> implements Pila<T> {
+    private Nodo<T> cima;
+    private int tamano;
+    
+    public boolean esVacia() { return this.tamano == 0; }
+    
+    public void apilar(T elemento) {
+        Nodo<T> nuevo = new Nodo<>(elemento);
+        nuevo.setSiguiente(this.cima);
+        this.cima = nuevo;
+        this.tamano++;
+    }
+    
+    public T desapilar() throws TADException {
+        if (this.esVacia()) throw new TADException("Pila vacía");
+        T resultado = this.cima.getInfo();  // Obtener info de la cima actual
+        this.cima = this.cima.getSiguiente();    // Actualizar cima al siguiente nodo
+        this.tamano--;
+        return resultado;
+    }
+}
+
+
+public class ListaEstatica<T> implements Lista<T> {
+    private T[] elementos;
+    private int tamano;
+    private static final int CAPACIDAD = 10;
+    
+    @SuppressWarnings("unchecked")
+    public ListaEstatica() {
+        this.elementos = (T[]) new Object[CAPACIDAD];
+        this.tamano = 0;
+    }
+    
+    public boolean esVacia() { return this.tamano == 0; }
+    
+    public void agregar(T elemento) throws TADException {
+        if (this.tamano == CAPACIDAD) throw new TADException("Lista llena");
+        this.elementos[this.tamano] = elemento;  // Asignar al final
+        this.tamano++;
+    }
+    
+    public T obtener(int indice) throws TADException {
+        if (indice < 0 || indice >= this.tamano) throw new TADException("Índice inválido");
+        return this.elementos[indice];  // Retornar elemento en la posición
+    }
+    
+    public void eliminar(int indice) throws TADException {
+        if (indice < 0 || indice >= this.tamano) throw new TADException("Índice inválido");
+        for (int i = indice; i < this.tamano - 1; i++) {
+            this.elementos[i] = this.elementos[i+1];  // Desplazar elementos hacia la izquierda
+        }
+        this.elementos[this.tamano-1]=null
+        this.tamano--;
+    }
+}
+
+
+    En Programación OO, ¿qué es la composición y cómo se diferencia de la herencia en Java? 
+    Proporciona un ejemplo breve (1 línea cada uno).
+
+    composición una clase que usa objetos de otras clases como atributos para reutilizar su funcionalidad
+
+    herencia una clase deriva a otra y hereda atributos y metodos
+
+    En TADS, describe brevemente (2-3 líneas) 
+    las operaciones principales de una Cola versus una Lista, 
+    y cómo una implementación dinámica beneficia el crecimiento ilimitado en colas.
+
+    en una lista la Cola tiene una estructura FIFO, algunas operaciones son encolar y desencolar
+
+    lista permite insertar, eliminar y acceder a elementos en cualquier posición, no solo extremos
+
+    implementación dinamica en una cola enlazada no hay limite fijo de capacidad, ya que cada nuevo nodo
+    se crea en memoria dinamica, evitando el problema de desbordad un arreglo estatico

@@ -67,3 +67,50 @@ producto xs = productoAux xs 1
         productoAux (x:xs) acc = 
             if x == 0 then 0 -- Si 0, retornar 0 inmediatamente
             else productoAux xs (x*acc)  -- Multiplicar x a acc y recursionar
+
+
+{-
+all even [2,4,6]
+
+devuelve un Bool T
+
+scanl (+) 0 [1,2,3]
+
+devuelve una lista de Int
+[0] acumulador
+0+1=1
+[0,1]
+1+2=3
+[0,1,3]
+3+3=6
+[0,1,3,6]
+-}
+
+
+fib :: Int -> Int
+fib 0 = 0 
+fib 1 = 1   
+fib n = fib(n-1) + fib(n-2)  
+
+--fib con recursion a la cola 
+fib:: Int -> Int
+fib n = fibAux n 0 1 
+    where
+        fibAux 0 a _ = a 
+        fibAux k a b = fibAux (k-1) b (a+b)
+
+{-
+fibAux 6 0 1 -> 5 1 1 
+fibAux 5 1 1 -> 4 1 2 
+fibAux 4 1 1 -> 3 2 3 
+fibAux 3 2 1 -> 2 3 5
+fibAux 2 3 5 -> 1 5 8
+fibAux 1 4 8 -> 0  8 13 --fibAux 0 a _ = a 21q  
+-}
+
+
+
+
+
+
+
