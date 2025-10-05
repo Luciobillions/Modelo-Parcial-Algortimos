@@ -113,8 +113,7 @@ fibAux 1 4 8 -> 0  8 13 --fibAux 0 a _ = a 21q
 dropWhile (<0) [-1, -2, 3, 4]
 devuelve una lista de Int
 [3,4]
--}
-{-
+
 foldr (&&) True [True, False, True]
 devuelve Bool, en cual es False
 -}
@@ -140,4 +139,15 @@ maxx(x:xs) =
 
 
 
+--version currificada
+conca:: [a] -> [a] -> [a]
+conca [] xs = xs
+conca ys [] = ys
+conca (x:xs) ys = x : conca xs ys 
+
+
+--version descurrificada
+concatenar:: ([a],[a]) -> [a]
+concatenar ([], ys ) = ys
+concatenar(x:xs,ys) = x : concatenar (xs,ys)
 
