@@ -1,0 +1,92 @@
+public class ColaEstatica<T> implements Cola<T> {
+    private T[] elementos;
+    private int frente, tamano;
+    private static final int CAPACIDAD = 10;
+    
+    @SuppressWarnings("unchecked")
+    public ColaEstatica() {
+        this.elementos = (T[]) new Object[CAPACIDAD];
+        this.frente = 0;
+        this.tamano = 0;
+    }
+    
+    public boolean esVacia() { return this.tamano == 0; }
+    
+    public void encolar(T elemento) throws TADException {
+        if (this.tamano == CAPACIDAD) throw new TADException("Cola llena");
+        this.elementos[this.frente + this.tamano] = elemento;
+        this.tamano++;
+    }
+    
+    public T desencolar() throws TADException {
+        if (this.esVacia()) throw new TADException("Cola vacía");
+        T resultado = elementos[this.frente];  // Obtener elemento en frente
+        // Desplazar todos los elementos hacia la izquierda
+        for (int i = 0; i < this.tamano - 1; i++) {
+            this.elementos[i] = elementos[i+1];  // Desplazar
+        }
+        this.tamano--;
+        return resultado;
+    }
+}
+
+public class ListaEnlazada<T> implements Lista<T> {
+    private Nodo<T> inicio;
+    private int tamano;
+    
+    public boolean esVacia() { return this.tamano == 0; }
+    
+    public void insertar(T elemento, int indice) throws TADException {
+        if (indice < 0 || indice > this.tamano) throw new TADException("Índice inválido");
+        Nodo<T> nuevo = new Nodo<>(elemento);
+        if (indice == 0) {
+            nuevo.setSiguiente(this.inicio);
+            this.inicio = nuevo;
+        } else {
+            Nodo<T> aux = this.inicio;
+            for (int i = 0; i < indice - 1; i++) {
+                aux = aux.getSiguiente();  // Avanzar al nodo anterior al índice
+            }
+            nuevo.setSiguiente(aux.getSiguiente());
+            aux.setSiguiente(nuevo);
+        }
+        this.tamano++;
+    }
+    
+    public T obtener(int indice) throws TADException {
+        if (indice < 0 || indice >= this.tamano) throw new TADException("Índice inválido");
+        Nodo<T> aux = this.inicio;
+        for (int i = 0; i < indice; i++) {
+            aux = aux.getSiguiente();  // Avanzar al siguiente
+        }
+        return this.aux.getInfo();  // Retornar info del nodo
+    }
+    
+    public void eliminar(int indice) throws TADException {
+        if (indice < 0 || indice >= this.tamano) throw new TADException("Índice inválido");
+        if (indice == 0) {
+            this.inicio = this.inicio.getSiguiente();
+        } else {
+            Nodo<T> aux = this.inicio;
+            for (int i = 0; i < indice - 1; i++) {
+                aux = aux.getSiguiente();
+            }
+            aux.setSiguiente(aux.getSiguiente().getSiguiente());
+        }
+        this.tamano--;
+    }
+}
+
+En Programación OO, ¿qué es una clase abstracta en Java y cómo se diferencia de una interfaz? 
+Proporciona un ejemplo breve (1 línea cada uno)
+
+las clases abstractas son clases que tienen metodos sin implementación
+la interfaz en ves son contratos de metodos que la clase que la implementa debe cumplir
+sin proporcionar implementacion salvo default o static 
+
+En TADS, describe brevemente (2-3 líneas) las operaciones principales de una Pila versus una Cola,
+ y cómo una implementación estática limita el uso en escenarios de tamaño dinámico.
+
+En una pila las operaciones pueden ser, tope(devuelve lo que hay en el tome), apilar(), desapilar()
+en la cola se puede ver como encolar(), desencolar(), esVacia(), vaciar(), longitud()
+

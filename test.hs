@@ -93,8 +93,8 @@ fib 1 = 1
 fib n = fib(n-1) + fib(n-2)  
 
 --fib con recursion a la cola 
-fib:: Int -> Int
-fib n = fibAux n 0 1 
+fibb:: Int -> Int
+fibb n = fibAux n 0 1 
     where
         fibAux 0 a _ = a 
         fibAux k a b = fibAux (k-1) b (a+b)
@@ -109,7 +109,34 @@ fibAux 1 4 8 -> 0  8 13 --fibAux 0 a _ = a 21q
 -}
 
 
+{-
+dropWhile (<0) [-1, -2, 3, 4]
+devuelve una lista de Int
+[3,4]
+-}
+{-
+foldr (&&) True [True, False, True]
+devuelve Bool, en cual es False
+-}
 
+
+
+--a la cola 
+maximo :: [Int] -> Int
+maximo (x:xs) = maximoAux xs x
+    where
+        maximoAux [] acc = acc -- Caso base: retornar acumulador
+        maximoAux (y:ys) acc = 
+            if y > acc then  maximoAux ys y -- Si y mayor, actualizar acc a y y recursionar
+            else maximoAux ys acc -- Si no, mantener acc y recursionar
+
+
+
+maxx::[Int] -> Int
+maxx [x] = x
+maxx(x:xs) = 
+    let m = maxx xs
+    in if x > m then x else m 
 
 
 
